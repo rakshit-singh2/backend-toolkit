@@ -1,0 +1,85 @@
+{
+    "name": "my-backend-toolkit",
+    "version": "1.0.0",
+    "description": "A small TypeScript toolkit for backend logging, request/GraphQL/socket/redis monitoring, and Mongo query-explain debugging.",
+    "license": "UNLICENSED",
+    "type": "module",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:cjs:pkg",
+        "build:esm": "tsc -p tsconfig.json",
+        "build:cjs": "tsc -p tsconfig.cjs.json",
+        "build:cjs:pkg": "node scripts/write-cjs-package-json.mjs",
+        "clean": "rm -rf dist",
+        "prepublishOnly": "npm run build"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/cjs/index.js"
+        },
+        "./logger": {
+            "types": "./dist/logger/index.d.ts",
+            "import": "./dist/logger/index.js",
+            "require": "./dist/cjs/logger/index.js"
+        },
+        "./mongoose": {
+            "types": "./dist/mongoose/index.d.ts",
+            "import": "./dist/mongoose/index.js",
+            "require": "./dist/cjs/mongoose/index.js"
+        },
+        "./graphql": {
+            "types": "./dist/graphql/index.d.ts",
+            "import": "./dist/graphql/index.js",
+            "require": "./dist/cjs/graphql/index.js"
+        },
+        "./socketio": {
+            "types": "./dist/socketio/index.d.ts",
+            "import": "./dist/socketio/index.js",
+            "require": "./dist/cjs/socketio/index.js"
+        },
+        "./express": {
+            "types": "./dist/express/index.d.ts",
+            "import": "./dist/express/index.js",
+            "require": "./dist/cjs/express/index.js"
+        },
+        "./redis": {
+            "types": "./dist/redis/index.d.ts",
+            "import": "./dist/redis/index.js",
+            "require": "./dist/cjs/redis/index.js"
+        },
+        "./performance": {
+            "types": "./dist/performance/index.d.ts",
+            "import": "./dist/performance/index.js",
+            "require": "./dist/cjs/performance/index.js"
+        },
+        "./config": {
+            "types": "./dist/config/index.d.ts",
+            "import": "./dist/config/index.js",
+            "require": "./dist/cjs/config/index.js"
+        }
+    },
+    "peerDependencies": {
+        "mongoose": "^9.7.3",
+        "graphql": "^16.0.0"
+    },
+    "peerDependenciesMeta": {
+        "mongoose": {
+            "optional": true
+        },
+        "graphql": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@types/node": "^26.0.1",
+        "mongoose": "^9.7.3",
+        "typescript": "^5.9.2"
+    }
+}
